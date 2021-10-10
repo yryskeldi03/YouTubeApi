@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="btn_try_again">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/btn_try_again_height</item>
+        <item name="android:layout_marginStart">@dimen/main_margin_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/main_margin_horizontal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:textSize">@dimen/main_text_size</item>
+        <item name="android:backgroundTint">@color/red</item>
+        <item name="android:layout_marginBottom">@dimen/btn_try_again_m_bottom</item>
+    </style>
+
+    <style name="main_text_style">
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:textSize">@dimen/main_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
