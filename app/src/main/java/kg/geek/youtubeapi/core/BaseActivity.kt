@@ -15,19 +15,21 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         binding = inflateViewBinding()
         setContentView(binding.root)
 
+
         setUI()
-        checkInternet()
+        setupLiveData()
+        setupObservers()
         initClickListener()
 
     }
+
+    abstract fun setupObservers() // внутри этой функции обрабатываем observe
 
     abstract fun setupLiveData() // инициализация Live data
 
     abstract fun setUI() // инициализация UI
 
-    abstract fun initClickListener() // внутру этого метода обрабатываем все клики
-
-    abstract fun checkInternet() // внутру этого метода проверяем интернет
+    abstract fun initClickListener() // внутри этого метода обрабатываем все клики
 
 
 }

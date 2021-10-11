@@ -9,10 +9,11 @@ import kg.geek.youtubeapi.model.Items
 
 class PlaylistsAdapter : RecyclerView.Adapter<PlaylistsAdapter.ViewHolder>() {
 
-    private var playlists = listOf<Items>()
+    private var playlists = arrayListOf<Items>()
     private lateinit var listener: OnItemClickListener
 
-    fun setPlaylists(playlists: List<Items>) {
+    fun setPlaylists(playlists: ArrayList<Items>) {
+        this.playlists.clear()
         this.playlists = playlists
         notifyDataSetChanged()
     }

@@ -24,8 +24,8 @@ class MainViewModel : ViewModel() {
         return createCall()
     }
 
-    fun checkNetworkInfo(context: Context): LiveData<Boolean> {
-        return NetworkConnectivity(context)
+    fun checkNetworkInfoRealTime(context: Context): LiveData<Boolean?> {
+        return NetworkConnectivityRealTime(context)
     }
 
     private fun createCall(): LiveData<PlayList> {
@@ -43,11 +43,12 @@ class MainViewModel : ViewModel() {
                     Log.e("ololo", "onFailure: ${t.stackTrace} - ${t.localizedMessage}")
                 }
             })
+
         return data
     }
 }
 
-class NetworkConnectivity(context: Context) : LiveData<Boolean>() {
+class NetworkConnectivityRealTime(context: Context) : LiveData<Boolean?>() {
 
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -57,13 +58,23 @@ class NetworkConnectivity(context: Context) : LiveData<Boolean>() {
         override fun onAvailable(network: Network) {
             super.onAvailable(network)
             postValue(true)
-
         }
 
         override fun onLost(network: Network) {
             super.onLost(network)
             postValue(false)
         }
+
+        override fun onUnavailable() {
+            super.onUnavailable()
+            postValue(false)
+        }
+
+        override fun onLosing(network: Network, maxMsToLive: Int) {
+            super.onLosing(network, maxMsToLive)
+            postValue(false)
+        }
+
     }
 
     override fun onActive() {
