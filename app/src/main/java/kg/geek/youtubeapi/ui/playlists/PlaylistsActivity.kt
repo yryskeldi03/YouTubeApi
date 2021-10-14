@@ -1,29 +1,29 @@
-package kg.geek.youtubeapi.playlists
+package kg.geek.youtubeapi.ui.playlists
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
-import kg.geek.youtubeapi.MainViewModel
 import kg.geek.youtubeapi.core.BaseActivity
 import kg.geek.youtubeapi.databinding.ActivityPlaylistsBinding
 import kg.geek.youtubeapi.extensions.visible
 import kg.geek.youtubeapi.model.Items
-import kg.geek.youtubeapi.playlist_videos.PlaylistVideosActivity
+import kg.geek.youtubeapi.ui.playlist_detail.PlaylistDetailActivity
 
 class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding>() {
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var adapter: PlaylistsAdapter
+    private val viewModel: PlaylistsActivityViewModel by lazy { ViewModelProvider(this).get(PlaylistsActivityViewModel::class.java) }
+    private var playlists = arrayListOf<Items>()
+    private val adapter: PlaylistsAdapter by lazy { PlaylistsAdapter(this::clickListener, playlists) }
     private var isHaveNetworkConnect: Boolean? = null
 
     override fun setUI() {
-        adapter = PlaylistsAdapter()
-    }
-
-    override fun setupLiveData() {
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     override fun setupObservers() {
+
+        viewModel.loading.observe(this){
+            binding.progressBar.visible = it
+        }
 
         viewModel.checkNetworkInfoRealTime(this).observe(this, {
             isHaveNetworkConnect = it
@@ -31,11 +31,16 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding>() {
         })
 
         viewModel.getPlayList().observe(this, { response ->
-            adapter.setPlaylists(response.items as ArrayList<Items>)
-            binding.rvPlaylists.adapter = adapter
+            playlists = response.items
+            initRecycler()
         })
 
+    }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun initRecycler() {
+        binding.rvPlaylists.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 
     override fun initClickListener() {
@@ -46,14 +51,16 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding>() {
                 setupObservers()
             }
         }
+    }
 
-        adapter.setListener(object : PlaylistsAdapter.OnItemClickListener {
-            override fun onClick(id: String) {
-                val intent = Intent(this@PlaylistsActivity, PlaylistVideosActivity::class.java)
-                intent.putExtra(ID_KEY, id)
-                startActivity(intent)
-            }
-        })
+    private fun clickListener(id: String, title: String, description: String, itemCount: String) {
+        Intent(this, PlaylistDetailActivity::class.java).apply {
+            putExtra(ID_KEY, id)
+            putExtra(TITLE_KEY, title)
+            putExtra(DESCRIPTION_KEY, description)
+            putExtra(ITEM_COUNT, itemCount)
+            startActivity(this)
+        }
     }
 
     private fun checkInternet() {
@@ -65,6 +72,9 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding>() {
 
     companion object {
         const val ID_KEY = "id"
+        const val TITLE_KEY = "title"
+        const val DESCRIPTION_KEY = "description"
+        const val ITEM_COUNT = "itemCount"
     }
 
     override fun inflateViewBinding(): ActivityPlaylistsBinding {

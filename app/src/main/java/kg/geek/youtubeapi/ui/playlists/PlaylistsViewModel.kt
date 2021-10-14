@@ -1,4 +1,4 @@
-package kg.geek.youtubeapi
+package kg.geek.youtubeapi.ui.playlists
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -17,8 +17,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel() {
+class PlaylistsActivityViewModel : ViewModel() {
+
     private val youTubeApi = RetrofitClient.create()
+
+    val loading = MutableLiveData<Boolean>()
 
     fun getPlayList(): LiveData<PlayList> {
         return createCall()
@@ -29,6 +32,7 @@ class MainViewModel : ViewModel() {
     }
 
     private fun createCall(): LiveData<PlayList> {
+        loading.value = true
         val data = MutableLiveData<PlayList>()
 
         youTubeApi.getPlayList(Constant.PART, Constant.CHANNEL_ID, Constant.MY_MAX_RESULT, API_KEY)
@@ -36,6 +40,7 @@ class MainViewModel : ViewModel() {
                 override fun onResponse(call: Call<PlayList>, response: Response<PlayList>) {
                     if (response.isSuccessful && response.body() != null) {
                         data.value = response.body()
+                        loading.value = false
                     }
                 }
 
@@ -46,6 +51,7 @@ class MainViewModel : ViewModel() {
 
         return data
     }
+
 }
 
 class NetworkConnectivityRealTime(context: Context) : LiveData<Boolean?>() {

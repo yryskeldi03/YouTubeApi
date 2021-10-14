@@ -12,5 +12,6 @@ fun Context.showToast(message: String) {
 fun ImageView.load(uri: String) {
     Glide.with(this)
         .load(uri)
+        .centerCrop()
         .into(this)
 }

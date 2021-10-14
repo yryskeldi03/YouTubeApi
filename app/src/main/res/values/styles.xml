@@ -21,4 +21,9 @@
         <item name="android:textSize">@dimen/main_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="card_view">
+        <item name="android:layout_width">@dimen/card_view_width</item>
+        <item name="android:layout_height">@dimen/card_view_heigth</item>
+    </style>
 </resources>

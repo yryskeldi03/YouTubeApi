@@ -17,15 +17,12 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
 
         setUI()
-        setupLiveData()
         setupObservers()
         initClickListener()
 
     }
 
     abstract fun setupObservers() // внутри этой функции обрабатываем observe
-
-    abstract fun setupLiveData() // инициализация Live data
 
     abstract fun setUI() // инициализация UI
 

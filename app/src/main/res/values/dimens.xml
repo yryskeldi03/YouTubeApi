@@ -9,4 +9,8 @@
     <dimen name="tv_no_internet_m_top">22dp</dimen>
     <dimen name="playlist_data_margin">8dp</dimen>
     <dimen name="title_size">12dp</dimen>
+    <dimen name="card_view_width">130dp</dimen>
+    <dimen name="card_view_heigth">90dp</dimen>
+    <dimen name="card_corner_radius">6dp</dimen>
+    <dimen name="playlist_title">27sp</dimen>
 </resources>

@@ -1,26 +1,18 @@
-package kg.geek.youtubeapi.playlists
+package kg.geek.youtubeapi.ui.playlists
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kg.geek.youtubeapi.R
 import kg.geek.youtubeapi.databinding.PlaylistItemBinding
 import kg.geek.youtubeapi.extensions.load
 import kg.geek.youtubeapi.model.Items
 
-class PlaylistsAdapter : RecyclerView.Adapter<PlaylistsAdapter.ViewHolder>() {
-
-    private var playlists = arrayListOf<Items>()
-    private lateinit var listener: OnItemClickListener
-
-    fun setPlaylists(playlists: ArrayList<Items>) {
-        this.playlists.clear()
-        this.playlists = playlists
-        notifyDataSetChanged()
-    }
-
-    fun setListener(listener: OnItemClickListener) {
-        this.listener = listener
-    }
+class PlaylistsAdapter(
+    private val clickListener: (id: String, title: String, description: String, itemCount: String) -> Unit,
+    private var playlists: ArrayList<Items>
+) :
+    RecyclerView.Adapter<PlaylistsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -45,15 +37,19 @@ class PlaylistsAdapter : RecyclerView.Adapter<PlaylistsAdapter.ViewHolder>() {
             binding.ivPlaylist.load(playList.snippet.thumbnails.medium.url)
             binding.tvPlaylistTitle.text = playList.snippet.title
             binding.tvPlaylistVideoCounter.text =
-                String.format(playList.contentDetails.itemCount.toString() + " video series")
+                String.format(
+                    playList.contentDetails.itemCount.toString() + " "
+                            + itemView.context.getString(R.string.video_series)
+                )
 
             binding.root.setOnClickListener {
-                listener.onClick(playList.id)
+                clickListener(
+                    playList.id,
+                    playList.snippet.title,
+                    playList.snippet.description,
+                    playList.contentDetails.itemCount.toString()
+                )
             }
         }
-    }
-
-    interface OnItemClickListener {
-        fun onClick(id: String)
     }
 }

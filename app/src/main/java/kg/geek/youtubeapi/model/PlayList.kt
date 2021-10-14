@@ -1,9 +1,9 @@
 package kg.geek.youtubeapi.model
 
 data class PlayList(
-    var kind: String,
     var etag: String,
-    var items: List<Items>,
+    var items: ArrayList<Items>,
+    var kind: String,
     var pageInfo: PageInfo,
 )
 
@@ -23,13 +23,19 @@ data class Snippet(
     var tags: List<String>,
     var categoryId: String,
     var liveBroadcastContent: String,
-    var localized: Localized
+    var localized: Localized,
+    var playlistId: String,
+    var position: Int,
+    var resourceId: ResourceId,
+    var videoOwnerChannelId: String,
+    var videoOwnerChannelTitle: String,
+
 )
 
 data class PageInfo(
     var maxResults: Int,
     var totalResults: Int,
-    var resultsPerPage: Int = 40
+    var resultsPerPage: Int
 )
 
 data class Medium(
@@ -44,11 +50,11 @@ data class Localized(
 )
 
 data class Items(
-    var kind: String,
+    var contentDetails: ContentDetails,
     var etag: String,
     var id: String,
-    var snippet: Snippet,
-    var contentDetails: ContentDetails
+    var kind: String,
+    var snippet: Snippet
 )
 
 data class High(
@@ -73,5 +79,22 @@ data class ContentDetails(
     var caption: String,
     var licensedContent: Boolean,
     var contentRating: ContentRating,
-    var projection: String
+    var projection: String,
+    var videoId: String,
+    var videoPublishedAt: String,
+    var endAt: String
+)
+
+data class ResourceId(
+    var kind: String,
+    var videoId: String
+)
+
+data class PlaylistItems(
+    var kind: String,
+    var etag: String,
+    var id: String,
+    var snippet: Snippet,
+    var contentDetails: ContentDetails
+
 )

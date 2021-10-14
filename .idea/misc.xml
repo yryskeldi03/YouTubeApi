@@ -4,13 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/drawable/gradient_bg.xml" value="0.28615384615384615" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/drawable/ic_arrow.xml" value="0.22962962962962963" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.23148148148148148" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/drawable/ic_no_internet.xml" value="0.28615384615384615" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/drawable/ic_start_video.xml" value="0.2777777777777778" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/drawable/iv_playlist_ava_bg.xml" value="0.28615384615384615" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/layout/activity_playlist_detail.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/layout/activity_playlist_videos.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/layout/activity_playlists.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/layout/no_internet_connection.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/layout/playlist_detail_item.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/layout/playlist_item.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/YouTubeApi/app/src/main/res/layout/playlist_videos_item.xml" value="0.6" />
       </map>
     </option>
   </component>

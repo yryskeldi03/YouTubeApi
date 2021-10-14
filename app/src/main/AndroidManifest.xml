@@ -15,10 +15,10 @@
         android:theme="@style/Theme.YouTubeApi"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".playlist_videos.PlaylistVideosActivity"
+            android:name="kg.geek.youtubeapi.ui.playlist_detail.PlaylistDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".playlists.PlaylistsActivity"
+            android:name="kg.geek.youtubeapi.ui.playlists.PlaylistsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -14,4 +14,12 @@ interface YouTubeApi {
         @Query("maxResults") maxResults: String,
         @Query("key") apiKey: String
     ): Call<PlayList>
+
+    @GET("playlistItems")
+    fun getPlaylistItems(
+        @Query("part") part: String,
+        @Query("key") apiKey: String,
+        @Query("maxResults") maxResults: String,
+        @Query("playlistId") playlistId: String
+    ): Call<PlayList>
 }

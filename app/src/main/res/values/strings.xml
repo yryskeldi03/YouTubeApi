@@ -4,4 +4,9 @@
     <string name="try_again">Try again</string>
     <string name="playlist_ava">playlist ava</string>
     <string name="playlist">playlist</string>
+    <string name="video_series">video series</string>
+    <string name="back">Back</string>
+    <string name="icon_back">icon back</string>
+    <string name="playlists">Playlists</string>
+    <string name="button_play">button play</string>
 </resources>

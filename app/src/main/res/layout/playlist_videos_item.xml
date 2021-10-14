@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_gravity="center"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:layout_marginTop="16dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_iv_ava"
+        style="@style/card_view"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/card_view">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iv_playlist"
+            android:id="@+id/iv_video"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/playlist_ava"
@@ -24,51 +24,32 @@
 
     </androidx.cardview.widget.CardView>
 
-    <View
-        android:id="@+id/tv_playlist_bg"
-        android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:background="@drawable/iv_playlist_ava_bg"
-        app:layout_constraintBottom_toBottomOf="@id/card_iv_ava"
-        app:layout_constraintEnd_toEndOf="@id/card_iv_ava"
-        app:layout_constraintStart_toStartOf="@id/card_iv_ava" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/playlist"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/tv_playlist_bg"
-        app:layout_constraintEnd_toEndOf="@id/tv_playlist_bg"
-        app:layout_constraintStart_toStartOf="@id/tv_playlist_bg"
-        app:layout_constraintTop_toTopOf="@id/tv_playlist_bg" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="@dimen/playlist_data_margin"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/card_iv_ava"
         app:layout_constraintStart_toEndOf="@id/card_iv_ava"
         app:layout_constraintTop_toTopOf="@id/card_iv_ava">
 
         <TextView
-            android:id="@+id/tv_playlist_title"
+            android:id="@+id/tv_video_title"
+            style="@style/main_text_style"
             android:layout_width="190dp"
             android:layout_height="wrap_content"
-            tools:text="Emotional Well-being Healing Practices for Children"
-            style="@style/main_text_style"
-            />
+            android:maxLines="2"
+            tools:text="Emotional Well-being Healing Practices for Children" />
 
         <TextView
-            android:id="@+id/tv_playlist_video_counter"
+            android:id="@+id/tv_video_publishedAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_brown"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/grey"
             android:textSize="@dimen/title_size"
-            tools:text="32 video series"
-            tools:ignore="SpUsage" />
+            tools:ignore="SpUsage"
+            tools:text="2020-01-31T11:54:21Z" />
 
     </LinearLayout>
 

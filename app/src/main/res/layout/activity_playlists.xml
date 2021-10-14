@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="16dp"
-    tools:context=".playlists.PlaylistsActivity">
+    tools:context=".ui.playlists.PlaylistsActivity">
 
     <include
         android:id="@+id/iv_no_internet_connection_layout"
         layout="@layout/no_internet_connection"
         android:visibility="invisible" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_playlists"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/playlist_item" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
