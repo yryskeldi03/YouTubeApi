@@ -11,7 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/main.appbar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="360dp"
         android:fitsSystemWindows="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge">
 
@@ -21,8 +21,10 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="center"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginTop="?actionBarSize"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <LinearLayout
@@ -40,55 +42,58 @@
                     android:id="@+id/tv_playlist_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Emotional Well-being a Healing Practices for Children"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/playlist_title" />
+                    android:textSize="@dimen/playlist_title"
+                    tools:text="Emotional Well-being a Healing Practices for Children" />
 
                 <TextView
                     android:id="@+id/tv_playlist_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:maxLines="5"
-                    tools:text="In this series, we break down the impact of displacement, instability, violence, and trauma in children, and offer exercises to support children in their healing journey. "
+                    android:maxLines="8"
                     android:textColor="@color/dark_grey"
-                    android:textSize="@dimen/main_text_size" />
+                    android:textSize="@dimen/main_text_size"
+                    tools:text="In this series, we break down the impact of displacement, instability, violence, and trauma in children, and offer exercises to support children in their healing journey. " />
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/main.toolbar"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                android:elevation="1dp"
-                app:popupTheme="@style/Theme.MaterialComponents.NoActionBar.Bridge">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/iv_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/icon_back"
-                    android:src="@drawable/ic_arrow" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/main.toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/white"
+                    android:elevation="1dp"
+                    app:popupTheme="@style/Theme.MaterialComponents.NoActionBar.Bridge">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/back"
-                    android:textColor="@color/red"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/tv_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:drawablePadding="5dp"
+                        android:text="@string/back"
+                        android:textColor="@color/red"
+                        android:textSize="18sp"
+                        app:drawableStartCompat="@drawable/ic_arrow" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="10dp"
-                    android:text="@string/playlists"
-                    android:textColor="@color/red"
-                    android:textSize="21sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/playlists"
+                        android:textColor="@color/red"
+                        android:textSize="21sp" />
 
-            </androidx.appcompat.widget.Toolbar>
+                </androidx.appcompat.widget.Toolbar>
+
+            </RelativeLayout>
+
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -129,9 +134,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/main_margin_horizontal"
         android:backgroundTint="@color/red"
+        android:contentDescription="@string/button_play"
         android:src="@drawable/ic_baseline_play_arrow_24"
         app:layout_anchor="@id/main.appbar"
         app:layout_anchorGravity="bottom|right|end"
-        app:maxImageSize="35dp"
-        android:contentDescription="@string/button_play" />
+        app:maxImageSize="35dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

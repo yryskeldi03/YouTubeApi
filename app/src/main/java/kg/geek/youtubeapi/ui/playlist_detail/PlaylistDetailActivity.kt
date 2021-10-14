@@ -31,6 +31,7 @@ class PlaylistDetailActivity : BaseActivity<ActivityPlaylistDetailBinding>() {
         binding.tvVideoCounter.text = String.format(
             intent.getStringExtra(PlaylistsActivity.ITEM_COUNT) + " " + getString(R.string.video_series)
         )
+
     }
 
     override fun setupObservers() {
@@ -43,7 +44,9 @@ class PlaylistDetailActivity : BaseActivity<ActivityPlaylistDetailBinding>() {
 
 
     override fun initClickListener() {
-
+        binding.tvBack.setOnClickListener{
+            finish()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
