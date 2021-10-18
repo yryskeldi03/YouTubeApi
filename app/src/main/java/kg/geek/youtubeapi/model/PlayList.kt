@@ -80,7 +80,6 @@ data class ContentDetails(
     var licensedContent: Boolean,
     var contentRating: ContentRating,
     var projection: String,
-    var videoId: String,
     var videoPublishedAt: String,
     var endAt: String
 )
@@ -90,11 +89,3 @@ data class ResourceId(
     var videoId: String
 )
 
-data class PlaylistItems(
-    var kind: String,
-    var etag: String,
-    var id: String,
-    var snippet: Snippet,
-    var contentDetails: ContentDetails
-
-)

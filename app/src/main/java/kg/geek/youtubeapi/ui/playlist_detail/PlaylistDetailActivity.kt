@@ -37,14 +37,19 @@ class PlaylistDetailActivity : BaseActivity<ActivityPlaylistDetailBinding>() {
     override fun setupObservers() {
         viewModel.getPlaylistItems(intent.getStringExtra(PlaylistsActivity.ID_KEY).toString())
             .observe(this) { response ->
-                videos = response.items
+                viewModel.loading.value = false
+                if (response.body() != null && response.body()?.items != null)
+                    videos = response.body()!!.items
                 initRecycler()
             }
+
+        viewModel.loading.observe(this) {
+            binding.progressBar.visible = it
+        }
     }
 
-
     override fun initClickListener() {
-        binding.tvBack.setOnClickListener{
+        binding.tvBack.setOnClickListener {
             finish()
         }
     }

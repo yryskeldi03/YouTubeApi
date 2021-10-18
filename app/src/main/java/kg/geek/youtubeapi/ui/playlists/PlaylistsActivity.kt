@@ -11,9 +11,18 @@ import kg.geek.youtubeapi.ui.playlist_detail.PlaylistDetailActivity
 
 class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding>() {
 
-    private val viewModel: PlaylistsActivityViewModel by lazy { ViewModelProvider(this).get(PlaylistsActivityViewModel::class.java) }
+    private val viewModel: PlaylistsActivityViewModel by lazy {
+        ViewModelProvider(this).get(
+            PlaylistsActivityViewModel::class.java
+        )
+    }
     private var playlists = arrayListOf<Items>()
-    private val adapter: PlaylistsAdapter by lazy { PlaylistsAdapter(this::clickListener, playlists) }
+    private val adapter: PlaylistsAdapter by lazy {
+        PlaylistsAdapter(
+            this::clickListener,
+            playlists
+        )
+    }
     private var isHaveNetworkConnect: Boolean? = null
 
     override fun setUI() {
@@ -21,7 +30,7 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding>() {
 
     override fun setupObservers() {
 
-        viewModel.loading.observe(this){
+        viewModel.loading.observe(this) {
             binding.progressBar.visible = it
         }
 
@@ -31,7 +40,10 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding>() {
         })
 
         viewModel.getPlayList().observe(this, { response ->
-            playlists = response.items
+            viewModel.loading.value = false
+            if (response.body() != null && response.body()?.items != null) {
+                playlists = response.body()!!.items
+            }
             initRecycler()
         })
 

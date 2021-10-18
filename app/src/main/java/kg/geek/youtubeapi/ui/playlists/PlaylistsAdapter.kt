@@ -34,6 +34,7 @@ class PlaylistsAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(playList: Items) {
+
             binding.ivPlaylist.load(playList.snippet.thumbnails.medium.url)
             binding.tvPlaylistTitle.text = playList.snippet.title
             binding.tvPlaylistVideoCounter.text =
