@@ -3,16 +3,16 @@ package kg.geek.youtubeapi.ui.playlist_detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kg.geek.youtubeapi.App
 import kg.geek.youtubeapi.model.PlayList
+import kg.geek.youtubeapi.repository.Repository
 import retrofit2.Response
 
-class PlaylistDetailViewModel : ViewModel() {
+class PlaylistDetailViewModel(private val repository: Repository) : ViewModel() {
 
     val loading = MutableLiveData<Boolean>()
 
     fun getPlaylistItems(playlistId: String): LiveData<Response<PlayList>> {
-        return App.repository.getVideos(playlistId)
+        return repository.getVideos(playlistId)
     }
 
 }

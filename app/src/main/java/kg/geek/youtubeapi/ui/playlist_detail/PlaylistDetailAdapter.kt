@@ -12,7 +12,10 @@ import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
-class PlaylistDetailAdapter(private var videos: ArrayList<Items>) :
+class PlaylistDetailAdapter(
+    private var videos: ArrayList<Items>,
+    private var clickListener: (videoId: String, title: String, description: String) -> Unit
+) :
     RecyclerView.Adapter<PlaylistDetailAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,6 +49,14 @@ class PlaylistDetailAdapter(private var videos: ArrayList<Items>) :
             binding.ivVideo.load(video.snippet.thumbnails.medium.url)
             binding.tvVideoPublishedAt.text = formatDateTime
             binding.tvVideoTitle.text = video.snippet.title
+
+            itemView.setOnClickListener {
+                clickListener(
+                    video.snippet.resourceId.videoId,
+                    video.snippet.title,
+                    video.snippet.description
+                )
+            }
         }
     }
 }

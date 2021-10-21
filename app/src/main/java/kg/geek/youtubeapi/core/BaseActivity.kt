@@ -28,5 +28,4 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     abstract fun initClickListener() // внутри этого метода обрабатываем все клики
 
-
 }

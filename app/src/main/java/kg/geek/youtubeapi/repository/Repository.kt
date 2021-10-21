@@ -3,15 +3,13 @@ package kg.geek.youtubeapi.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import kg.geek.youtubeapi.BuildConfig
-import kg.geek.youtubeapi.`object`.Constant
+import kg.geek.youtubeapi.utils.Constant
 import kg.geek.youtubeapi.model.PlayList
-import kg.geek.youtubeapi.remote.RetrofitClient
+import kg.geek.youtubeapi.remote.YouTubeApi
 import kotlinx.coroutines.Dispatchers
 import retrofit2.Response
 
-class Repository {
-
-    private val youTubeApi = RetrofitClient.create()
+class Repository(private val youTubeApi: YouTubeApi) {
 
     fun getPlaylists(): LiveData<Response<PlayList>> = liveData(Dispatchers.IO) {
         val response = youTubeApi.getPlayList(

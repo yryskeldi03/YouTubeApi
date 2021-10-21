@@ -1,22 +1,26 @@
 package kg.geek.youtubeapi.ui.playlist_detail
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
+import android.content.Intent
 import kg.geek.youtubeapi.R
 import kg.geek.youtubeapi.core.BaseActivity
 import kg.geek.youtubeapi.databinding.ActivityPlaylistDetailBinding
 import kg.geek.youtubeapi.extensions.visible
 import kg.geek.youtubeapi.model.Items
 import kg.geek.youtubeapi.ui.playlists.PlaylistsActivity
+import kg.geek.youtubeapi.ui.video.VideoActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlaylistDetailActivity : BaseActivity<ActivityPlaylistDetailBinding>() {
-    private val viewModel: PlaylistDetailViewModel by lazy {
-        ViewModelProvider(this).get(
-            PlaylistDetailViewModel::class.java
+
+    private val viewModel: PlaylistDetailViewModel by viewModel()
+    private var videos = arrayListOf<Items>()
+    private val adapter: PlaylistDetailAdapter by lazy {
+        PlaylistDetailAdapter(
+            videos,
+            this::clickListener
         )
     }
-    private var videos = arrayListOf<Items>()
-    private val adapter: PlaylistDetailAdapter by lazy { PlaylistDetailAdapter(videos) }
 
     override fun setUI() {
         binding.tvPlaylistTitle.text = intent.getStringExtra(PlaylistsActivity.TITLE_KEY)
@@ -48,6 +52,15 @@ class PlaylistDetailActivity : BaseActivity<ActivityPlaylistDetailBinding>() {
         }
     }
 
+    private fun clickListener(videoId: String, title: String, description: String) {
+        Intent(this, VideoActivity::class.java).apply {
+            putExtra(VIDEO_ID_KEY, videoId)
+            putExtra(TITLE_KEY, title)
+            putExtra(DESCRIPTION_KEY, description)
+            startActivity(this)
+        }
+    }
+
     override fun initClickListener() {
         binding.tvBack.setOnClickListener {
             finish()
@@ -62,6 +75,12 @@ class PlaylistDetailActivity : BaseActivity<ActivityPlaylistDetailBinding>() {
 
     override fun inflateViewBinding(): ActivityPlaylistDetailBinding {
         return ActivityPlaylistDetailBinding.inflate(layoutInflater)
+    }
+
+    companion object {
+        const val VIDEO_ID_KEY = "video Id"
+        const val TITLE_KEY = "title"
+        const val DESCRIPTION_KEY = "description"
     }
 
 }

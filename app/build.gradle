@@ -60,8 +60,22 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
 
+    // KoinDI
+    var koin_version = "2.2.2"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+
     // Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
+
+    //YoutubeExtractor
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
+
+    // ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.15.1'
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'

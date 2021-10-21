@@ -2,20 +2,16 @@ package kg.geek.youtubeapi.ui.playlists
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import kg.geek.youtubeapi.core.BaseActivity
 import kg.geek.youtubeapi.databinding.ActivityPlaylistsBinding
 import kg.geek.youtubeapi.extensions.visible
 import kg.geek.youtubeapi.model.Items
 import kg.geek.youtubeapi.ui.playlist_detail.PlaylistDetailActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding>() {
 
-    private val viewModel: PlaylistsActivityViewModel by lazy {
-        ViewModelProvider(this).get(
-            PlaylistsActivityViewModel::class.java
-        )
-    }
+    private val viewModel: PlaylistsViewModel by viewModel()
     private var playlists = arrayListOf<Items>()
     private val adapter: PlaylistsAdapter by lazy {
         PlaylistsAdapter(
