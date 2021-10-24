@@ -8,7 +8,6 @@ import kg.geek.youtubeapi.core.network.result.Resource
 import kg.geek.youtubeapi.model.PlayList
 import kg.geek.youtubeapi.repository.Repository
 import kg.geek.youtubeapi.utils.NetworkConnectivityRealTime
-import retrofit2.Response
 
 class PlaylistsViewModel(private val repository: Repository) : ViewModel() {
 
