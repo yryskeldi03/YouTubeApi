@@ -8,6 +8,7 @@ import kg.geek.youtubeapi.core.ui.BaseActivity
 import kg.geek.youtubeapi.databinding.ActivityPlaylistDetailBinding
 import kg.geek.youtubeapi.extensions.showToast
 import kg.geek.youtubeapi.extensions.visible
+import kg.geek.youtubeapi.extensions.invisible
 import kg.geek.youtubeapi.model.Items
 import kg.geek.youtubeapi.ui.playlists.PlaylistsActivity
 import kg.geek.youtubeapi.ui.video.VideoActivity
@@ -15,7 +16,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlaylistDetailActivity : BaseActivity<ActivityPlaylistDetailBinding>() {
-
     private val viewModel: PlaylistDetailViewModel by viewModel()
     private var videos = arrayListOf<Items>()
     private val adapter: PlaylistDetailAdapter by lazy {
