@@ -3,8 +3,10 @@ package kg.geek.youtubeapi.ui.playlist_detail
 import android.annotation.SuppressLint
 import android.content.Intent
 import kg.geek.youtubeapi.R
-import kg.geek.youtubeapi.core.BaseActivity
+import kg.geek.youtubeapi.core.network.result.Status.*
+import kg.geek.youtubeapi.core.ui.BaseActivity
 import kg.geek.youtubeapi.databinding.ActivityPlaylistDetailBinding
+import kg.geek.youtubeapi.extensions.showToast
 import kg.geek.youtubeapi.extensions.visible
 import kg.geek.youtubeapi.model.Items
 import kg.geek.youtubeapi.ui.playlists.PlaylistsActivity
@@ -41,12 +43,24 @@ class PlaylistDetailActivity : BaseActivity<ActivityPlaylistDetailBinding>() {
     override fun setupObservers() {
         viewModel.getPlaylistItems(intent.getStringExtra(PlaylistsActivity.ID_KEY).toString())
             .observe(this) { response ->
-                viewModel.loading.value = false
-                if (response.body() != null && response.body()?.items != null)
-                    videos = response.body()!!.items
-                initRecycler()
-            }
 
+                when (response.status) {
+                    SUCCESS -> {
+                        viewModel.loading.value = false
+                        if (response.data?.items != null) {
+                            videos = response.data.items
+                        }
+                        initRecycler()
+                    }
+
+                    LOADING -> viewModel.loading.value = true
+
+                    ERROR -> {
+                        viewModel.loading.value = false
+                        showToast(response.message.toString())
+                    }
+                }
+            }
         viewModel.loading.observe(this) {
             binding.progressBar.visible = it
         }

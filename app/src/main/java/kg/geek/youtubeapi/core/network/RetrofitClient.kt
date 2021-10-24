@@ -1,6 +1,7 @@
-package kg.geek.youtubeapi.remote
+package kg.geek.youtubeapi.core.network
 
 import kg.geek.youtubeapi.BuildConfig.BASE_URL
+import kg.geek.youtubeapi.remote.YouTubeApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

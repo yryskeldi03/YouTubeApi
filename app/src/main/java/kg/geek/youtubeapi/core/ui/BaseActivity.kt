@@ -1,4 +1,4 @@
-package kg.geek.youtubeapi.core
+package kg.geek.youtubeapi.core.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

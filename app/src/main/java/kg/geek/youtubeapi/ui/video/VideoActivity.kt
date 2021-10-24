@@ -1,19 +1,16 @@
 package kg.geek.youtubeapi.ui.video
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.util.SparseArray
 import at.huber.youtubeExtractor.VideoMeta
 import at.huber.youtubeExtractor.YouTubeExtractor
 import at.huber.youtubeExtractor.YtFile
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.MergingMediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
-import com.google.android.exoplayer2.util.Util
-import kg.geek.youtubeapi.core.BaseActivity
+import kg.geek.youtubeapi.core.ui.BaseActivity
 import kg.geek.youtubeapi.databinding.ActivityVideoBinding
 import kg.geek.youtubeapi.ui.playlist_detail.PlaylistDetailActivity
 import kg.geek.youtubeapi.utils.Constant
@@ -30,7 +27,8 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
 
     override fun setUI() {
         binding.tvVideoTitle.text = intent.getStringExtra(PlaylistDetailActivity.TITLE_KEY)
-        binding.tvVideoDescription.text = intent.getStringExtra(PlaylistDetailActivity.DESCRIPTION_KEY)
+        binding.tvVideoDescription.text =
+            intent.getStringExtra(PlaylistDetailActivity.DESCRIPTION_KEY)
         initPlayer()
     }
 
@@ -48,26 +46,26 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
                 videoMeta: VideoMeta?
             ) {
                 if (ytFiles != null) {
-                    val videoItag = 137
+                    val videoItag = 133
                     val audioItag = 140
                     val videoUri = ytFiles[videoItag].url
                     val audioUrl = ytFiles[audioItag].url
 
-                    val audioSource: MediaSource =
+                    val audioSource =
                         ProgressiveMediaSource.Factory(DefaultHttpDataSource.Factory())
                             .createMediaSource(MediaItem.fromUri(audioUrl))
 
-                    val videoSource: MediaSource =
+                    val videoSource =
                         ProgressiveMediaSource.Factory(DefaultHttpDataSource.Factory())
                             .createMediaSource(MediaItem.fromUri(videoUri))
 
-                    player!!.setMediaSource(
+                    player?.setMediaSource(
                         MergingMediaSource(true, videoSource, audioSource),
                         true
                     )
-                    player!!.prepare()
-                    player!!.playWhenReady = playWhenReady
-                    player!!.seekTo(currentWindow, playbackPosition)
+                    player?.prepare()
+                    player?.playWhenReady = playWhenReady
+                    player?.seekTo(currentWindow, playbackPosition)
                 }
             }
 
@@ -86,43 +84,32 @@ class VideoActivity : BaseActivity<ActivityVideoBinding>() {
 
     override fun onStart() {
         super.onStart()
-        if (Util.SDK_INT >= 24) {
-            initPlayer()
-        }
+        initPlayer()
     }
 
     override fun onResume() {
         super.onResume()
-        if (Util.SDK_INT < 24 || player == null) {
-            initPlayer()
-        }
+        initPlayer()
     }
 
     override fun onPause() {
-        if (Util.SDK_INT < 24) {
-            releasePlayer()
-        }
+        releasePlayer()
         super.onPause()
     }
 
     override fun onStop() {
-        if (Util.SDK_INT < 24) {
-            releasePlayer()
-        }
+        releasePlayer()
         super.onStop()
-        player!!.stop()
-
+        player?.stop()
     }
 
     private fun releasePlayer() {
         if (player != null) {
-            playWhenReady = player!!.playWhenReady
-            playbackPosition = player!!.currentPosition
-            currentWindow = player!!.currentWindowIndex
-            player!!.release()
+            playWhenReady = player?.playWhenReady!!
+            playbackPosition = player?.currentPosition!!
+            currentWindow = player?.currentWindowIndex!!
+            player?.release()
             player = null
         }
     }
-
-
 }
